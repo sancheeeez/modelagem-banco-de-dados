@@ -1,0 +1,43 @@
+
+pedido {
+	id_pedido integer pk increments unique
+	item varchar(100) increments
+	valor decimal
+	id_cliente integer >* cliente.id_cliente
+	id_funcionario integer >* funcionario.id_funcionario
+	id_entregador integer >* motoboy.id_motoboy
+	id_item integer >* menu.id_item
+}
+
+menu {
+	id_item integer pk increments unique
+	item varchar(100)
+	valor decimal
+	bebida varchar
+	lanche varchar
+	sobremesa varchar
+}
+
+motoboy {
+	id_motoboy integer pk increments unique
+	nome varchar(100)
+	valor decimal
+	pagamento varchar
+	id_pedido integer > pedido.id_pedido
+}
+
+funcionario {
+	id_funcionario integer pk increments unique
+	nome varchar(100)
+	cpf varchar(12)
+	qualificacoes varchar
+}
+
+cliente {
+	id_cliente integer pk increments unique
+	nome varchar(100)
+	cpf varchar(12)
+	pedido varchar(100)
+	pagamento varchar(100)
+}
+
